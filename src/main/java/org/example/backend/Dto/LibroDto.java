@@ -3,8 +3,6 @@ package org.example.backend.Dto;
 import lombok.*;
 import org.example.backend.Modelo.Libro;
 
-import java.time.LocalDate;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -13,16 +11,16 @@ public class LibroDto {
     private Integer id;
     private String title;
     private String author;
-    private Boolean isRead;
-    private LocalDate createdAt;
+    private String readed;
+    private String created;
 
     public Libro castLibro() {
         Libro libro = new Libro();
         libro.setId(id);
         libro.setTitle(title);
         libro.setAuthor(author);
-        libro.setIsRead(isRead);
-        libro.setCreatedAt(createdAt);
+        libro.setReaded(readed);
+        libro.setCreated(created);
         return libro;
     }
 
@@ -30,8 +28,8 @@ public class LibroDto {
         id = libro.getId();
         title = libro.getTitle();
         author = libro.getAuthor();
-        isRead = libro.getIsRead();
-        createdAt = libro.getCreatedAt();
+        readed = libro.getReaded();
+        created = libro.getCreated();
         return this;
     }
 }
