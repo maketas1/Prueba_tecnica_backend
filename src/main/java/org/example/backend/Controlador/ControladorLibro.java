@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/libros")
+@RequestMapping("/api/books")
 public class ControladorLibro {
 
     @Autowired
@@ -36,6 +36,58 @@ public class ControladorLibro {
     public ResponseEntity<LibroDto> getLibro1(@PathVariable(name = "id") Integer id) {
         Libro libro = servicio.obtenerUno(id);
         return new ResponseEntity<>((new LibroDto()).castLibroADto(libro),HttpStatus.OK);
+    }
+
+    @GetMapping("/author/{author}")
+    public ResponseEntity<List<LibroDto>> getLibro2(@PathVariable(name = "author") String author) {
+        List<Libro> libroBBDD = servicio.buscarLibrosPorAuthor(author);
+        List<LibroDto> listaLibroDto = new ArrayList<>();
+
+        for (Libro libro : libroBBDD) {
+            LibroDto libroDto = new LibroDto();
+            listaLibroDto.add(libroDto.castLibroADto(libro));
+        }
+
+        return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/title/{title}")
+    public ResponseEntity<List<LibroDto>> getLibro3(@PathVariable(name = "title") String title) {
+        List<Libro> libroBBDD = servicio.buscarLibrosPorTitle(title);
+        List<LibroDto> listaLibroDto = new ArrayList<>();
+
+        for (Libro libro : libroBBDD) {
+            LibroDto libroDto = new LibroDto();
+            listaLibroDto.add(libroDto.castLibroADto(libro));
+        }
+
+        return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/readed/{readed}")
+    public ResponseEntity<List<LibroDto>> getLibro4(@PathVariable(name = "readed") String readed) {
+        List<Libro> libroBBDD = servicio.buscarLibrosPorLeido(readed);
+        List<LibroDto> listaLibroDto = new ArrayList<>();
+
+        for (Libro libro : libroBBDD) {
+            LibroDto libroDto = new LibroDto();
+            listaLibroDto.add(libroDto.castLibroADto(libro));
+        }
+
+        return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/created/{created}")
+    public ResponseEntity<List<LibroDto>> getLibro5(@PathVariable(name = "created") String created) {
+        List<Libro> libroBBDD = servicio.buscarLibrosPorCreated(created);
+        List<LibroDto> listaLibroDto = new ArrayList<>();
+
+        for (Libro libro : libroBBDD) {
+            LibroDto libroDto = new LibroDto();
+            listaLibroDto.add(libroDto.castLibroADto(libro));
+        }
+
+        return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
     }
 
     @PostMapping

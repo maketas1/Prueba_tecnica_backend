@@ -6,6 +6,8 @@ import org.example.backend.Repositorio.ILibroRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LibroServicio extends CRUD<Libro, Integer> implements ILibroServicio {
 
@@ -15,5 +17,25 @@ public class LibroServicio extends CRUD<Libro, Integer> implements ILibroServici
     @Override
     protected IGenericoRepositorio<Libro, Integer> getRepo() {
         return repo;
+    }
+
+    @Override
+    public List<Libro> buscarLibrosPorAuthor(String author) {
+        return repo.buscarLibrosPorAuthor(author);
+    }
+
+    @Override
+    public List<Libro> buscarLibrosPorTitle(String title) {
+        return repo.buscarLibrosPorTitle(title);
+    }
+
+    @Override
+    public List<Libro> buscarLibrosPorLeido(String readed) {
+        return repo.buscarLibrosPorLeido(readed);
+    }
+
+    @Override
+    public List<Libro> buscarLibrosPorCreated(String created) {
+        return repo.buscarLibrosPorCreated(created);
     }
 }
