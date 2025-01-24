@@ -58,7 +58,7 @@
   * ICRUD
   * ILibroServicio
   * LibroServicio
-* PruebaTecnicaBackendApplication
+* PruebaTecnicaBackendApplication.java
 
 ### Merjoras
 * Añadiria una tabla de ejemplares para gestionar cuantos ejemplares hay de cada libro
