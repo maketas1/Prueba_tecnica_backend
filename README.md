@@ -1,28 +1,66 @@
 # Getting Started
 
-### Reference Documentation
+### Implementación
 
-For further reference, please consider the following sections:
+* Crear la base de datos en MySQL usando el script sql adjunto
+* Cambiar en el fichero application.properties usuario de la base de datos y contraseña por unas que este en su base de datos
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.1/maven-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.4.1/maven-plugin/build-image.html)
-* [Spring Web](https://docs.spring.io/spring-boot/3.4.1/reference/web/servlet.html)
+### Ejecución
 
-### Guides
+* Código principal desde el Main ubicado en la clase PruebaTecnicaBackendApplication
+* Código testing desde la clase PruebaTecnicaBackendApplicationTests
 
+### Peticiones en Postman
 
-The following guides illustrate how to use some features concretely:
+* Raíz peticiones: http://localhost:8080/api/books
+* Get
+  * Sin añadir nada: Mostraría todos los libros
+  * /{id}: Mostraría el libro con un id en específico
+  * /author/{author}: Mostraría el libro/s con un author en específico
+  * /author/containing/{author}: Mostraría el libro/s con un author que contenga una palabra en específico (por ejemplo Julio)
+  * /title/{title}: Mostraría el libro/s con un title en específico
+  * /title/containing/{title}: Mostraría el libro/s con un title que contenga una palabra en específico (por ejemplo Viaje)
+  * /readed/{readed}: Mostraría el libro con un readed en específico
+  * /readed/containing/{readed}: Mostraría el libro con un readed que contenga una palabra en específico (por ejemplo No)
+  * /created/{created}: Mostraría el libro con un created en específico
+  * /created/containing/{created}: Mostraría el libro con un created que contenga una palabra en específico (por ejemplo 2025)
+* Post
+  * Sin añadir nada: El objeto en formato JSON en el body
+* Put
+    * Sin añadir nada: El objeto en formato JSON en el body
+* Patch
+  * /{id}: Pone el libro a Leido o NoLeido dependiendo de cómo estuviese en al hacer la petición
+* Delete
+  * /{id}: Elimina el libro con el id especificado
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+### Decisiones tomadas
 
-### Maven Parent overrides
+* Sustituir el isReaded por String debido a que internamente en mi ordenador lo cogía como entero
+* Sustituir el createdAt por String debido a que internamente en mi ordenador lo cogía como null
 
-Due to Maven's design, elements are inherited from the parent POM to the project POM.
-While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the
-parent.
-To prevent this, the project POM contains empty overrides for these elements.
-If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
+### Estructura del proyecto
 
+* Controlador
+  * ControladorLibro
+* Dto
+  * LibroDto (sirve para mostrar o insertar unos datos en especifico)
+* Excepciones (Con excepciones personalicadas para errores 400, 404, 405 y 500)
+  * ControladorExcepciones
+  * ExcepcionesPersonalizadasNoEncontrado
+  * ExcepcionRespuesta
+* Modelo
+  * Libro (Clase generada por hibernate)
+* Repositorio
+  * IGenericoRepositorio
+  * ILibroRepo
+* Servicio
+  * CRUD
+  * ICRUD
+  * ILibroServicio
+  * LibroServicio
+* PruebaTecnicaBackendApplication
+
+### Merjoras
+* Añadiria una tabla de ejemplares para gestionar cuantos ejemplares hay de cada libro
+* Añadiria una tabla de usuarios para para asignar rol de de usuario normal y administrador usando JWTAuthentication
+* Añadiria una tabla de prestamos para que los usuarios puedan ver los ejemplares prestados

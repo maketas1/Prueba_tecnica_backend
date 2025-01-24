@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+//Objeto con los datos para mandar al salir un error de tipo 400, 404, 405 y 500
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

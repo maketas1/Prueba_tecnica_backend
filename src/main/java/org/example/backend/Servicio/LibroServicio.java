@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+//Clase servicio de libro
 @Service
 public class LibroServicio extends CRUD<Libro, Integer> implements ILibroServicio {
 

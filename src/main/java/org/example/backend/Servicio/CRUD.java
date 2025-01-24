@@ -4,6 +4,7 @@ import org.example.backend.Repositorio.IGenericoRepositorio;
 
 import java.util.List;
 
+//Clase Crud Generico para servicio
 public abstract class CRUD<T,ID> implements ICRUD<T,ID> {
     protected abstract IGenericoRepositorio<T,ID> getRepo();
 

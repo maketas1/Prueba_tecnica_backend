@@ -4,6 +4,7 @@ import org.example.backend.Modelo.Libro;
 
 import java.util.List;
 
+//Interfaz con las consultas personalizadas para usarlas en el servicio
 public interface ILibroServicio extends ICRUD<Libro,Integer> {
     List<Libro> buscarLibrosPorAuthor(String author);
     List<Libro> buscarLibrosPorTitle(String title);

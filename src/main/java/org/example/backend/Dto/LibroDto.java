@@ -3,6 +3,7 @@ package org.example.backend.Dto;
 import lombok.*;
 import org.example.backend.Modelo.Libro;
 
+//Clase DTO que castea los datos para mostrar o enviar solamente los datos que queremos
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
