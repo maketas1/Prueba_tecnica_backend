@@ -33,13 +33,13 @@ public class ControladorLibro {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LibroDto> getLibro1(@PathVariable(name = "id") Integer id) {
+    public ResponseEntity<LibroDto> getLibroById(@PathVariable(name = "id") Integer id) {
         Libro libro = servicio.obtenerUno(id);
         return new ResponseEntity<>((new LibroDto()).castLibroADto(libro),HttpStatus.OK);
     }
 
     @GetMapping("/author/{author}")
-    public ResponseEntity<List<LibroDto>> getLibro2(@PathVariable(name = "author") String author) {
+    public ResponseEntity<List<LibroDto>> getLibroByAuthor(@PathVariable(name = "author") String author) {
         List<Libro> libroBBDD = servicio.buscarLibrosPorAuthor(author);
         List<LibroDto> listaLibroDto = new ArrayList<>();
 
@@ -51,8 +51,21 @@ public class ControladorLibro {
         return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
     }
 
+    @GetMapping("/author/containing/{author}")
+    public ResponseEntity<List<LibroDto>> getLibroByAuthorContaining(@PathVariable(name = "author") String author) {
+        List<Libro> libroBBDD = servicio.findLibrosByAuthorContaining(author);
+        List<LibroDto> listaLibroDto = new ArrayList<>();
+
+        for (Libro libro : libroBBDD) {
+            LibroDto libroDto = new LibroDto();
+            listaLibroDto.add(libroDto.castLibroADto(libro));
+        }
+
+        return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
+    }
+
     @GetMapping("/title/{title}")
-    public ResponseEntity<List<LibroDto>> getLibro3(@PathVariable(name = "title") String title) {
+    public ResponseEntity<List<LibroDto>> getLibroByTitle(@PathVariable(name = "title") String title) {
         List<Libro> libroBBDD = servicio.buscarLibrosPorTitle(title);
         List<LibroDto> listaLibroDto = new ArrayList<>();
 
@@ -64,8 +77,21 @@ public class ControladorLibro {
         return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
     }
 
+    @GetMapping("/title/containing/{title}")
+    public ResponseEntity<List<LibroDto>> getLibroByTitleContaining(@PathVariable(name = "title") String title) {
+        List<Libro> libroBBDD = servicio.findLibrosByTitleContaining(title);
+        List<LibroDto> listaLibroDto = new ArrayList<>();
+
+        for (Libro libro : libroBBDD) {
+            LibroDto libroDto = new LibroDto();
+            listaLibroDto.add(libroDto.castLibroADto(libro));
+        }
+
+        return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
+    }
+
     @GetMapping("/readed/{readed}")
-    public ResponseEntity<List<LibroDto>> getLibro4(@PathVariable(name = "readed") String readed) {
+    public ResponseEntity<List<LibroDto>> getLibroByReaded(@PathVariable(name = "readed") String readed) {
         List<Libro> libroBBDD = servicio.buscarLibrosPorLeido(readed);
         List<LibroDto> listaLibroDto = new ArrayList<>();
 
@@ -77,9 +103,35 @@ public class ControladorLibro {
         return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
     }
 
+    @GetMapping("/readed/containing/{readed}")
+    public ResponseEntity<List<LibroDto>> getLibroByReadedContaining(@PathVariable(name = "readed") String readed) {
+        List<Libro> libroBBDD = servicio.findLibrosByReadedContaining(readed);
+        List<LibroDto> listaLibroDto = new ArrayList<>();
+
+        for (Libro libro : libroBBDD) {
+            LibroDto libroDto = new LibroDto();
+            listaLibroDto.add(libroDto.castLibroADto(libro));
+        }
+
+        return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
+    }
+
     @GetMapping("/created/{created}")
-    public ResponseEntity<List<LibroDto>> getLibro5(@PathVariable(name = "created") String created) {
+    public ResponseEntity<List<LibroDto>> getLibroByCreated(@PathVariable(name = "created") String created) {
         List<Libro> libroBBDD = servicio.buscarLibrosPorCreated(created);
+        List<LibroDto> listaLibroDto = new ArrayList<>();
+
+        for (Libro libro : libroBBDD) {
+            LibroDto libroDto = new LibroDto();
+            listaLibroDto.add(libroDto.castLibroADto(libro));
+        }
+
+        return new ResponseEntity<>(listaLibroDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/created/containing/{created}")
+    public ResponseEntity<List<LibroDto>> getLibroByCreatedContaining(@PathVariable(name = "created") String created) {
+        List<Libro> libroBBDD = servicio.findLibrosByCreatedContaining(created);
         List<LibroDto> listaLibroDto = new ArrayList<>();
 
         for (Libro libro : libroBBDD) {

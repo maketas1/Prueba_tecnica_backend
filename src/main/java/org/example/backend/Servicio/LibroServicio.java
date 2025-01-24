@@ -38,4 +38,24 @@ public class LibroServicio extends CRUD<Libro, Integer> implements ILibroServici
     public List<Libro> buscarLibrosPorCreated(String created) {
         return repo.buscarLibrosPorCreated(created);
     }
+
+    @Override
+    public List<Libro> findLibrosByTitleContaining(String title) {
+        return repo.findLibrosByTitleContaining(title);
+    }
+
+    @Override
+    public List<Libro> findLibrosByAuthorContaining(String author) {
+        return repo.findLibrosByAuthorContaining(author);
+    }
+
+    @Override
+    public List<Libro> findLibrosByReadedContaining(String readed) {
+        return repo.findLibrosByReadedContaining(readed);
+    }
+
+    @Override
+    public List<Libro> findLibrosByCreatedContaining(String created) {
+        return repo.findLibrosByCreatedContaining(created);
+    }
 }

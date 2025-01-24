@@ -10,13 +10,17 @@ public interface ILibroRepo extends IGenericoRepositorio<Libro,Integer>{
 
     @Query(value = "Select l From Libro l where l.title = :title")
     List<Libro> buscarLibrosPorTitle(@Param("title") String title);
+    List<Libro> findLibrosByTitleContaining(String titulo);
 
     @Query(value = "Select l From Libro l where l.author = :author")
     List<Libro> buscarLibrosPorAuthor(@Param("author") String author);
+    List<Libro> findLibrosByAuthorContaining(String author);
 
     @Query(value = "Select l From Libro l where l.readed = :readed")
     List<Libro> buscarLibrosPorLeido(@Param("readed") String readed);
+    List<Libro> findLibrosByReadedContaining(String readed);
 
     @Query(value = "Select l From Libro l where l.created = :created")
     List<Libro> buscarLibrosPorCreated(@Param("created") String created);
+    List<Libro> findLibrosByCreatedContaining(String created);
 }

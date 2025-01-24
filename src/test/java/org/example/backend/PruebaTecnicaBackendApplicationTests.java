@@ -53,7 +53,7 @@ class PruebaTecnicaBackendApplicationTests {
     @Test
     void testGetLibro1() {
         when(libroServicio.obtenerUno(1)).thenReturn(libro);
-        ResponseEntity<LibroDto> response = controladorLibro.getLibro1(1);
+        ResponseEntity<LibroDto> response = controladorLibro.getLibroById(1);
         assertEquals(200, response.getStatusCodeValue());
         assertNotNull(response.getBody());
     }
