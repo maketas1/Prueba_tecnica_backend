@@ -2,7 +2,7 @@
 
 ### Implementación
 
-* Crear la base de datos en MySQL usando el script sql adjunto
+* Crear la base de datos en MySQL usando el script sql adjunto (scriptPruebaTecnica.sql)
 * Cambiar en el fichero application.properties usuario de la base de datos y contraseña por unas que este en su base de datos
 
 ### Ejecución
